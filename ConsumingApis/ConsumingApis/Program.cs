@@ -43,9 +43,21 @@ namespace ConsumingApis
         private static void CallAdditionalApis()
         {
             // Create an instance of your API Client here
-
+            DNDCharacterClassAPIClient dndAPI = new DNDCharacterClassAPIClient();
             // Call to your API client's method(s) of interest and display the results to the user
+            const string classType = "barbarian";
+            DNDClasses classes = dndAPI.GetClass($"{classType}");
 
+            if (classes == null)
+            {
+                Console.WriteLine("Could not find D&D class " + classType);
+            }
+            else
+            {
+                Console.WriteLine("Got D&D class " + classType);
+                Console.WriteLine($"{classes.Index}, {classes.name}, {classes.hit_die}");
+            }
         }
+        
     }
 }
